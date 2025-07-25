@@ -3,12 +3,13 @@ html {
 }
 
 body {
-  font-family: Courier New, monospace;
+  font-family: Source Code Pro, monospace;
+  font-weight: bold;
+  font-size: 16px;
   background-image: url("background.png");
   background-size: cover;
   height: 100%;
   display: flex;
-  flex-direction: vertical;
 }
 
 #terminal {
@@ -23,6 +24,7 @@ body {
   color: white;
   padding: 5px;
   display: inline-flex;
+  flex-direction: column;
 }
 
 .options {
@@ -31,8 +33,22 @@ body {
   display: none;
 }
 
-#project_options {
+.options button {
+  border: none;
+  background: none;
+  font-weight: bold;
+  font-family: Source Code Pro, monospace;
+  font-size: 16px;
+  color: orange;
+}
 
+.options button:focus {
+  color: blue;
+  background: white;
+}
+
+.options button:focus-visible {
+  outline: none;
 }
 
 #caret {
