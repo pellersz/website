@@ -11,15 +11,19 @@
       <div id="text_stuff"></div>
       <div id="main-options" class="options">
         <button type="button" onclick="aboutMePressed()">about_me</button>
-        <button type="button">download_CV</button>
+        <a href="CV.pdf" download="Gellert_Szabolcs_Papp_CV.pdf">
+          <button type="button">download_CV</button>
+        </a>
         <button type="button" onclick="projectsPressed()">projects</button>
+        <button type="button" onclick="help()">help</button>
       </div>
       <div id="about-options" class="options">
         
       </div>
       <div id="project-options" class="options">
-        <button type="button">apifs</button>
-        <button type="button">Watch My Project</button>
+        <button type="button">apifs: command line reminder utility for linux, written in Rust</button>
+        <button type="button">Watch My Project: Web interface to view and share community projects</button>
+        <button type="button" onclick="back()">back</button>
       </div>
     </div>
     <script src="script.js"></script>

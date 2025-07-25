@@ -2,11 +2,13 @@ const terminalText = document.getElementById("text_stuff");
 const terminal = document.getElementById("terminal");
 
 const mainOptions = document.getElementById("main-options");
+const projectOptions = document.getElementById("project-options");
 
 const userColor = "#89ba25";
 const suggestionColor = "#ef622a"
 //TODO: set this back to 50
 const typetime = 10;
+let currentDir = "~"
 
 let currentOptions = undefined;
 
@@ -111,7 +113,7 @@ async function writePromptStarter(cmd, options) {
   const span = document.createElement("span");
   span.style.color = userColor;
   terminalText.appendChild(span);
-  await typeAnimation(span, "whois@gszp");
+  await typeAnimation(span, `whois@gszp ${currentDir}`);
   terminalText.innerHTML += "<br>";
   await typeAnimation(terminalText, `╰─$ ${cmd} `);
   turnOnOptions(options); 
@@ -134,9 +136,9 @@ function displayText(str, into) {
 }
 
 async function help() {
-  await writePromptStarter("help");
-  newLine();  
-  await writeCmds(["cat help.txt"]);
+  turnOffOptions();
+
+  await writeCmds(["help", "cat help.txt"]);
   displayText("\n\n"                                                                                         + 
 "   ▄██████▄     ▄████████  ▄█        ▄█          ▄████████    ▄████████     ███             ▄███████▄    ▄████████    ▄███████▄    ▄███████▄   █▄    ▄████████\n" + 
 "  ███    ███   ███    ███ ███       ███         ███    ███   ███    ███ ▀█████████▄        ███    ███   ███    ███   ███    ███   ███    ███   ██   ███    ███\n" + 
@@ -158,7 +160,9 @@ async function help() {
 "                                                                      ███    ███                                             ▀                                \n\n" +
 "Hi, my name is Gellert-Szabolcs Papp, currently a masters student, who enjoys developing things.\nTo navigate click on the options bellow, or use the left and right arrows then press space or enter.\n",
     terminalText
-  ) 
+  )
+  await writePromptStarter("lets_see", currentOptions);
+  turnOnOptions(currentOptions);
 }
 
 function neofetchLines(name_values, elem) {
@@ -191,13 +195,15 @@ async function aboutMePressed() {
   neofetchLines(
     [
       ["Name", "Gellert-Szabolcs Papp"],
-      ["Education", "<br>Finished undergrad studies at the Babeş-Bolyai University, Mathematics and Computer Science specialization<br>Currently a masters student at the same university, High performance calculations and big data analytics specialization"],
+      ["Education", "<br>Finished undergrad studies at the Babeş-Bolyai University, Mathematics and Computer Science specialization" + 
+          "<br>Currently a masters student at the same university, High performance calculations and big data analytics specialization"],
       ["Interests", "High performance calulations and big data analytics, fullstack development, tools, mathematics"],
       ["Languages", "Hungarian (mother tongue), English (fluent), Romanian (intermediate)"],
       ["Technologies", "JavaScript, React, Java, C++, Rust, SQL, bash, Docker, Docker Compose, Gitlab CI/CD"],
       ["Experience", "<br>Fullstack development"],
       ["Email", "pappgellert2003@gmail.com"],
-      ["Phone", "0747958992"],
+      ["Phone", "+40747958992"],
+      ["GitHub", "<a href=\"https://github.com/pellersz/\" target=\"_blank\">https://github.com/pellersz/</a>"]
     ], 
     text
   )
@@ -205,18 +211,28 @@ async function aboutMePressed() {
   container.appendChild(pic);
   container.appendChild(text);
   terminalText.appendChild(container);
+  await writePromptStarter("lets_see", currentOptions);
 }
 
-function projectsPressed() {
-  console.log("joj");
+async function projectsPressed() {
+  turnOffOptions();
+  await writeCmds(["projects", "cd Projects"]);
+  currentDir = "~/Projects";
+  writePromptStarter("lets_see", projectOptions);
 }
 
+async function back() {
+  turnOffOptions();
+  await writeCmds(["back", "cd .."]);
+  currentDir = "~";
+  writePromptStarter("lets_see", mainOptions);
+}
+ 
 async function main() {
   document.querySelectorAll('.options').forEach(el => new focusGroup(el, true));
-  
+  currentOptions = mainOptions;
+  await writePromptStarter("");
   await help(); 
-
-  await writePromptStarter("lets_see", mainOptions);
 }
 
 main();

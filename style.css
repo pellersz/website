@@ -57,7 +57,16 @@ body {
   background: white;
 }
 
+.options a:focus button {
+  color: blue;
+  background: white;
+}
+
 .options button:focus-visible {
+  outline: none;
+}
+
+.options a:focus-visible {
   outline: none;
 }
 
