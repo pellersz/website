@@ -146,7 +146,9 @@ async function help() {
   turnOffOptions();
 
   await writeCmds(["help", "cat help.txt"]);
-  displayText("\n\n"                                                                                         + 
+  let greetingText = "\n\n";
+  if (window.innerWidth > 1400) {
+       greetingText +=                       
 "   ▄██████▄     ▄████████  ▄█        ▄█          ▄████████    ▄████████     ███             ▄███████▄    ▄████████    ▄███████▄    ▄███████▄   █▄    ▄████████\n" + 
 "  ███    ███   ███    ███ ███       ███         ███    ███   ███    ███ ▀█████████▄        ███    ███   ███    ███   ███    ███   ███    ███   ██   ███    ███\n" + 
 "  ███    █▀    ███    █▀  ███       ███         ███    █▀    ███    ███    ▀███▀▀██        ███    ███   ███    ███   ███    ███   ███    ███   ██   ███    █▀ \n" + 
@@ -164,10 +166,34 @@ async function help() {
 "███     ███   ███    █▄    ███    ██▄          ███       ███    █▄  ▀███████████ ███   ███   ███ ███  ███   ███   ███    ███ ███                              \n" + 
 "███ ▄█▄ ███   ███    ███   ███    ███          ███       ███    ███   ███    ███ ███   ███   ███ ███  ███   ███   ███    ███ ███▌    ▄                        \n" + 
 " ▀███▀███▀    ██████████ ▄█████████▀          ▄████▀     ██████████   ███    ███  ▀█   ███   █▀  █▀    ▀█   █▀    ███    █▀  █████▄▄██                        \n" + 
-"                                                                      ███    ███                                             ▀                                \n\n" +
-"Hi, my name is Gellert-Szabolcs Papp, currently a masters student, who enjoys developing things.\nTo navigate, click on the options bellow, or use the left and right arrows then press space or enter.\n",
-    terminalText
-  )
+"                                                                      ███    ███                                             ▀                                \n\n" 
+  } else if (window.innerWidth > 900) {
+      greetingText +=
+"  ________       .__  .__                 __    __________                   /\\          \n" +
+" /  _____/  ____ |  | |  |   ____________/  |_  \\______   \\____  ______ _____)/    ______\n" +
+"/   \\  ____/ __ \\|  | |  | _/ __ \\_  __ \\   __\\  |     ___|__  \\ \\____ \\\\____ \\   /  ___/\n" +
+"\\    \\_\\  \\  ___/|  |_|  |_\\  ___/|  | \\/|  |    |    |    / __ \\|  |_> >  |_> >  \\___ \\ \n" +
+" \\______  /\\___  >____/____/\\___  >__|   |__|    |____|   (____  /   __/|   __/  /____  >\n" +
+"        \\/     \\/               \\/                             \\/|__|   |__|          \\/ \n" +
+" __      __      ___.     ___________                  .__              .__              \n" +
+"/  \\    /  \\ ____\\_ |__   \\__    ___/__________  _____ |__| ____ _____  |  |             \n" +
+"\\   \\/\\/   // __ \\| __ \\    |    |_/ __ \\_  __ \\/     \\|  |/    \\\\__  \\ |  |             \n" +
+" \\        /\\  ___/| \\_\\ \\   |    |\\  ___/|  | \\/  Y Y  \\  |   |  \\/ __ \\|  |__           \n" +
+"  \\__/\\  /  \\___  >___  /   |____| \\___  >__|  |__|_|  /__|___|  (____  /____/           \n" +
+"       \\/       \\/    \\/               \\/            \\/        \\/     \\/                 \n\n" 
+  } else {
+      greetingText +=
+"▄▖  ▜ ▜     ▗  ▄▖      ▌  \n" +
+"▌ █▌▐ ▐ █▌▛▘▜▘ ▙▌▀▌▛▌▛▌ ▛▘\n" +
+"▙▌▙▖▐▖▐▖▙▖▌ ▐▖ ▌ █▌▙▌▙▌ ▄▌\n" +
+"                   ▌ ▌    \n" +
+"▖  ▖  ▌  ▄▖     ▘    ▜    \n" +
+"▌▞▖▌█▌▛▌ ▐█▌▛▘▛▛▌▛▌▀▌▐    \n" +
+"▛ ▝▌▙▖▙▌ ▐▙▖▌ ▌▌▌▌▌█▌▐▖   \n\n"
+  }
+  greetingText += "Hi, my name is Gellert-Szabolcs Papp, currently a masters student, who enjoys developing things.\nTo navigate, click on the options bellow, or use the left and right arrows then press space or enter.\n"
+
+  displayText(greetingText, terminalText);
   await writePromptStarter("lets_see", currentOptions);
   turnOnOptions(currentOptions);
 }
