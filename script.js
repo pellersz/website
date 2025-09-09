@@ -6,7 +6,6 @@ const projectOptions = document.getElementById("project-options");
 
 const userColor = "#89ba25";
 const suggestionColor = "#ef622a"
-//TODO: set this back to 50
 const typetime = 50;
 const fasttypetime = 1;
 let currentDir = "~"
@@ -138,7 +137,8 @@ async function writeCmds(cmds, typet) {
 
 function displayText(str, into) {
   const elem = document.createElement("pre");
-  elem.innerHTML += str; 
+  elem.innerHTML += str;
+  into.innerHTML += "<br><br>"
   into.appendChild(elem);
 }
 
@@ -264,10 +264,10 @@ async function apifsPressed() {
       "apifs", 
       "cd apifs", 
       "kitty icat apifs.png", 
-      "echo \"  apifs is a commnd line utility to create, manage reminders and notes.\\n" + 
-        "  This is a smaller personal project of mine, in an attempt to try to and learn the Rust programming language and its ecosystem. I was curious about it, because languages like C and C++ are losing trackion, while Rust is getting integrated into more and more software (like the Linux kernel) (granted, according to the Tiobe index, C and C++, are still 9 times more used, but the gap between them is slowly narrowing)\\n" + 
+      "echo \"  apifs is a commnd line utility to create, manage reminders and notes.\\n\\n" + 
+        "  This is a smaller personal project of mine, in an attempt to try to and learn the Rust programming language and its ecosystem. I was curious about it, because languages like C and C++ are losing trackion, while Rust is getting integrated into more and more software (like the Linux kernel) (granted, according to the Tiobe index, C and C++, are still 9 times more used, but the gap between them is slowly narrowing)\\n\\n" + 
         "  It can be accessed on my github page: https://github.com/pellersz/apifs.\"",
-      "cd .."
+      "cd ..\n\n\n"
     ],
     fasttypetime
   );
@@ -280,7 +280,32 @@ async function apifsPressed() {
 "This is a smaller personal project of mine, in an attempt to try to and learn the Rust programming language and its ecosystem. I was curious about it, because languages like C and C++ are losing trackion, while Rust is getting integrated into more and more software (like the Linux kernel) (granted, according to the Tiobe index, C and C++, are still 9 times more used, but the gap between them is slowly narrowing)\n",
     terminalText
   );
-  terminalText.innerHTML += "The project can be accessed on my github page: <a href=\"https://github.com/pellersz/apifs\" target=\"_blank\">https://github.com/pellersz/apifs</a><br>";
+  terminalText.innerHTML += "The project can be accessed on my github page: <a href=\"https://github.com/pellersz/apifs\" target=\"_blank\">https://github.com/pellersz/apifs</a>.<br>";
+  writePromptStarter("lets_see", currentOptions);
+}
+
+async function gameDuboisPressed() {
+  turnOffOptions();
+  removeCaret();
+  await writeCmds(
+    [
+      "Game Dubois", 
+      "cd Game\\ Dubois", 
+      "echo \"Game Dubois is an emulator for the Nintendo video game console Game Boy, released in 1989.\\n\\n" + 
+        "Among many things, I enjoy coding challenges and retro gaming. This app combines these two interests of mine. I took it as an opportunity to familiarize with C++ project management using CMake. I also got to somewhat understand low level audio programming which is also a bonus. It was quite a fun endevour to get to know this \\\"arcane\\\" video game console that could fit in your pocket\\n\\n" + 
+        "  The project can be accessed on my github page: https://github.com/pellersz/game-dubois.\\n" + 
+        "  If you are interested in how the Game Boy works, check out: https://gbdev.io/pandocs/\"",
+      "cd .."
+    ],
+    fasttypetime
+  );
+ 
+  displayText(
+"Game Dubois is an emulator for the Nintendo video game console Game Boy, released in 1989.\n\n" + 
+"Among many things, I enjoy coding challenges and retro gaming. This app combines these two interests of mine. I took it as an opportunity to familiarize with C++ project management using CMake. I also got to somewhat understand low level audio programming which is also a bonus. It was quite a fun endevour to get to know this \"arcane\" video game console that could fit in your pocket.\n", 
+    terminalText
+  );
+  terminalText.innerHTML += "The project can be accessed on my github page: <a href=\"https://github.com/pellersz/game-dubois\" target=\"_blank\">https://github.com/pellersz/game-dubois</a>.<br> If you are interested in how the Game Boy works, check out: <a href=\"https://gbdev.io/pandocs/\" target=\"_blank\">https://gbdev.io/pandocs</a>.<br>";
   writePromptStarter("lets_see", currentOptions);
 }
 
@@ -295,7 +320,7 @@ async function wmpPressed() {
       "echo \"  The Watch My Project softwaresysten, gives opportunity for people of the public to follow community projects and their needs. It also provides a platform for organizators to make their projects more well known.\\n" + 
         "  This project was part of a student mentorship program, where I collaborated with other strudents. On this project I was a fullstack developer. The backend was written in JavaScript with Node.js, the frontend was created with React, the database manipulations were done with the Sequelize ORM framework.\\n" + 
         "  We also presented the application in the 28th Transylvanian Students’ Scientific Conference, where it achieved an honorable mention.\"",
-      "cd .."
+      "cd ..\n\n\n"
     ],
     fasttypetime
   );
