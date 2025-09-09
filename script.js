@@ -308,6 +308,7 @@ async function gameDuboisPressed() {
   terminalText.innerHTML += "The project can be accessed on my github page: <a href=\"https://github.com/pellersz/game-dubois\" target=\"_blank\">https://github.com/pellersz/game-dubois</a>.<br> If you are interested in how the Game Boy works, check out: <a href=\"https://gbdev.io/pandocs/\" target=\"_blank\">https://gbdev.io/pandocs</a>.<br>";
   writePromptStarter("lets_see", currentOptions);
 }
+//
 
 async function wmpPressed() {
   turnOffOptions();
